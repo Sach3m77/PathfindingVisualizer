@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mapa z OSMnx i MapTiler</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.2.0/maptiler-sdk.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+  <div id="map"></div>
+
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <button id="toggleSidebar">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+
+  <div id="sidebar">
+    <h2>Opcje</h2>
+  
+    <label for="algorithm">Wybierz algorytm:</label>
+    <select id="algorithm">
+      <option value="dijkstra">Dijkstry</option>
+      <option value="astar">A*</option>
+    </select>
+
+    <div class="radius-container">
+      <label for="radiusRange">Promień pobierania grafu:</label>
+      <input type="range" id="radiusRange" min="100" max="20000" step="100" value="2000">
+      <div id="radiusValueContainer"><span id="radiusValue">2000</span> m</div>
+    </div>
+  
+    <div class="checkbox-container">
+      <label><input type="checkbox" id="showGraph" disabled />Pokaż graf</label>
+      <button id="loadGraphButton" class="action-button">Załaduj graf</button>
+    </div>
+
+    <div class="checkbox-container">
+      <label class="obstacle-label">
+        <input type="checkbox" id="useObstacle" checked />Uwzględnij przeszkody</label>
+      <button id="clearObstaclesButton" class="small-button" disabled>Usuń przeszkody</button>
+    </div>
+
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox" id="showAnimation" checked />Pokaż animacje</label>
+    </div>
+  
+    <div class="button-group">
+      <button id="startButton" disabled>Start</button>
+      <button id="resetButton">Resetuj</button>
+    </div>
+
+    <div class="legend">
+      <h4>Legenda:</h4>
+      <ul>
+        <li class="legend-row">
+          <span>
+            <img src="img/left-click.png" alt="Lewy klik" class="mouse-icon" />
+            ustawienie <span class="start-color">startu</span>
+          </span>
+          <img src="img/start-marker.png" alt="Start marker" class="legend-marker-icon" />
+        </li>
+        <li class="legend-row">
+          <span>
+            <img src="img/scroll.png" alt="Środkowy klik" class="mouse-icon" />
+            dodanie <span class="obstacle-color">przeszkody</span>
+          </span>
+          <img src="img/obstacle-marker.png" alt="Obstacle marker" class="legend-marker-icon" />
+        </li>
+        <li class="legend-row">
+          <span>
+            <img src="img/right-click.png" alt="Prawy klik" class="mouse-icon" />
+            ustawienie <span class="end-color">celu</span>
+          </span>
+          <img src="img/end-marker.png" alt="End marker" class="legend-marker-icon" />
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+
+  <button id="toggleBottomPanel">
+    <span class="material-symbols-outlined">data_usage</span>
+  </button>
+  
+  <div id="bottom-panel" class="collapsed">
+    <h3>Statystyki algorytmu</h3>
+
+    <div id="stats">
+      <p><span class="material-symbols-outlined icon-time">schedule</span><strong>Czas wykonania:</strong> <span id="time">-</span> ms</p>
+      <p><span class="material-symbols-outlined icon-length">straighten</span><strong>Długość ścieżki:</strong> <span id="length">-</span> m</p>
+      <p><span class="material-symbols-outlined icon-nodes">automation</span><strong>Odwiedzone węzły:</strong> <span id="iterations">-</span></p>
+      <p class="stat-row">
+        <span class="material-symbols-outlined icon-cpu">memory</span>
+        <strong>Użycie CPU:</strong>
+        <span class="stat-block">
+          <span class="label label-min">min</span>
+          <span id="cpu-min">- %</span>
+        </span>
+        <span class="stat-block">
+          <span class="label label-avg">avg</span>
+          <span id="cpu-avg">- %</span>
+        </span>
+        <span class="stat-block">
+          <span class="label label-max">max</span>
+          <span id="cpu-max">- %</span>
+        </span>
+      </p>
+      
+      <p class="stat-row">
+        <span class="material-symbols-outlined icon-ram">storage</span>
+        <strong>Użycie RAM<span class="megabyte"> [MB]:</span></strong>
+        <span class="stat-block">
+          <span class="label label-min">min</span>
+          <span id="ram-min">-</span>
+        </span>
+        <span class="stat-block">
+          <span class="label label-avg">avg</span>
+          <span id="ram-avg">-</span>
+        </span>
+        <span class="stat-block">
+          <span class="label label-max">max</span>
+          <span id="ram-max">-</span>
+        </span>
+      </p>
+    </div>
+      
+  </div>
+
+  <div id="toast"><span class="material-symbols-outlined">info</span><span class="toast-text"></span></div>
+
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.2.0/maptiler-sdk.umd.min.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

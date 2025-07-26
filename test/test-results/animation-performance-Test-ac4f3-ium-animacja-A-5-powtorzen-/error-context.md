@@ -1,0 +1,71 @@
+# Page snapshot
+
+```yaml
+- region "Map"
+- button "Zoom in"
+- button "Zoom out"
+- button "Reset bearing to north"
+- button "Find my location"
+- link "MapTiler logo":
+  - /url: https://www.maptiler.com/
+- group:
+  - link "© MapTiler":
+    - /url: https://www.maptiler.com/copyright/
+  - link "© OpenStreetMap contributors":
+    - /url: https://www.openstreetmap.org/copyright
+- heading "Opcje" [level=2]
+- text: "Wybierz algorytm:"
+- combobox "Wybierz algorytm:":
+  - option "Dijkstry" [selected]
+  - option "A*"
+- text: "Promień pobierania grafu:"
+- slider "Promień pobierania grafu:": "2000"
+- text: 2000 m
+- checkbox "Pokaż graf" [checked]
+- text: Pokaż graf
+- button "Załaduj graf"
+- checkbox "Uwzględnij przeszkody" [checked]
+- text: Uwzględnij przeszkody
+- button "Usuń przeszkody" [disabled]
+- checkbox "Pokaż animacje" [checked]
+- text: Pokaż animacje
+- button "Start" [disabled]
+- button "Resetuj"
+- heading "Legenda:" [level=4]
+- list:
+  - listitem:
+    - img "Lewy klik"
+    - text: ustawienie startu
+    - img "Start marker"
+  - listitem:
+    - img "Środkowy klik"
+    - text: dodanie przeszkody
+    - img "Obstacle marker"
+  - listitem:
+    - img "Prawy klik"
+    - text: ustawienie celu
+    - img "End marker"
+- button "data_usage"
+- heading "Statystyki algorytmu" [level=3]
+- paragraph:
+  - text: schedule
+  - strong: "Czas wykonania:"
+  - text: "- ms"
+- paragraph:
+  - text: straighten
+  - strong: "Długość ścieżki:"
+  - text: "- m"
+- paragraph:
+  - text: automation
+  - strong: "Odwiedzone węzły:"
+  - text: "-"
+- paragraph:
+  - text: memory
+  - strong: "Użycie CPU:"
+  - text: min - % avg - % max - %
+- paragraph:
+  - text: storage
+  - strong: "Użycie RAM [MB]:"
+  - text: min - avg - max -
+- text: info Graf został załadowany i wyświetlony.
+```
