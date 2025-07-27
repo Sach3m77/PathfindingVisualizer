@@ -1,6 +1,6 @@
 # **PathfindingVisualizer**
 ## A web application for visually comparing the operation of shortest path algorithms, Dijkstra and A*, on a world map.
-### Technologies: Python, JavaScript, Flask, OSMnx, MapTiler, GeoJSON
+### Technologies: Python, JavaScript, Flask, OSMnx, MapTiler SDK, GeoJSON
 
 &nbsp;
 
